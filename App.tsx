@@ -12,9 +12,9 @@ import React, { useEffect } from 'react';
 import {
   NativeAppEventEmitter,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   useTVEventHandler,
-  View,
 } from 'react-native';
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 import 'react-native/tvos-types.d';
@@ -29,18 +29,18 @@ const App = () => {
       'onHWKeyEvent',
       (onHWKeyEvent) => console.log({ onHWKeyEvent }),
     );
-    return subscription.remove();
+    return () => subscription.remove();
   }, []);
 
   return (
     <>
       <SafeAreaView>
-        {/* <ScrollView style={styles.scrollView}>
+        <ScrollView style={styles.scrollView}>
           <Header />
-        </ScrollView> */}
-        <View style={styles.scrollView}>
+        </ScrollView>
+        {/* <View style={styles.scrollView}>
           <Header />
-        </View>
+        </View> */}
       </SafeAreaView>
     </>
   );
