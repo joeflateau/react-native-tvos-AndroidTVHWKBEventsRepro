@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   NativeAppEventEmitter,
   SafeAreaView,
@@ -21,10 +21,16 @@ import 'react-native/tvos-types.d';
 
 declare const global: { HermesInternal: null | {} };
 
-NativeAppEventEmitter.addListener('onHWKeyEvent', (ev) => console.log({ ev }));
-
 const App = () => {
   useTVEventHandler((tvEvent) => console.log({ tvEvent }));
+
+  useEffect(() => {
+    const subscription = NativeAppEventEmitter.addListener(
+      'onHWKeyEvent',
+      (onHWKeyEvent) => console.log({ onHWKeyEvent }),
+    );
+    return subscription.remove();
+  }, []);
 
   return (
     <>
