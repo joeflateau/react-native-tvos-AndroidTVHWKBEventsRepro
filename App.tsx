@@ -13,6 +13,7 @@ import {
   NativeAppEventEmitter,
   SafeAreaView,
   StyleSheet,
+  useTVEventHandler,
   View,
 } from 'react-native';
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
@@ -23,6 +24,8 @@ declare const global: { HermesInternal: null | {} };
 NativeAppEventEmitter.addListener('onHWKeyEvent', (ev) => console.log({ ev }));
 
 const App = () => {
+  useTVEventHandler((tvEvent) => console.log({ tvEvent }));
+
   return (
     <>
       <SafeAreaView>
