@@ -9,16 +9,26 @@
  */
 
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import {
+  NativeAppEventEmitter,
+  SafeAreaView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 import 'react-native/tvos-types.d';
 
 declare const global: { HermesInternal: null | {} };
 
+NativeAppEventEmitter.addListener('onHWKeyEvent', (ev) => console.log({ ev }));
+
 const App = () => {
   return (
     <>
       <SafeAreaView>
+        {/* <ScrollView style={styles.scrollView}>
+          <Header />
+        </ScrollView> */}
         <View style={styles.scrollView}>
           <Header />
         </View>
